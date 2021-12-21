@@ -3,6 +3,7 @@
 namespace lib;
 
 use model\AbstractModel;
+use Throwable;
 
 //abstract.model の関数を使って、sessionを操作する。
 
@@ -31,16 +32,21 @@ class Msg extends AbstractModel
     // session を表示
     public static function flush()
     {
-        // この関数で、取得した瞬間、sessionが削除されて残らない
-        $msgs_with_type = static::getSessionFlush() ?? [];
-        foreach ($msgs_with_type as $type => $msgs) {
-            if ($type === static::DEBUG && !DEBUG) {
-                // DEBUGがtrueの時、下が実行
-                continue; //次のループをスキップ
+        try {
+            // この関数で、取得した瞬間、sessionが削除されて残らない
+            $msgs_with_type = static::getSessionFlush() ?? [];
+            foreach ($msgs_with_type as $type => $msgs) {
+                if ($type === static::DEBUG && !DEBUG) {
+                    // DEBUGがtrueの時、下が実行
+                    continue; //次のループをスキップ
+                }
+                foreach ($msgs as $msg) {
+                    echo "<div>{$type}:{$msg}</div>";
+                }
             }
-            foreach ($msgs as $msg) {
-                echo "<div>{$type}:{$msg}</div>";
-            }
+        } catch (Throwable $e) {
+            Msg::push(Msg::DEBUG, $e->getMessage());
+            Msg::push(Msg::ERROR, "Msg::Flushでエラー");
         }
     }
 

@@ -3,6 +3,8 @@
 // ただのクラスやんけ
 namespace model;
 
+use lib\Msg;
+
 class UserModel extends AbstractModel
 {
     public string $id;
@@ -11,4 +13,61 @@ class UserModel extends AbstractModel
     public int $del_flg;
 
     protected static $SESSION_NAME = "_user";
+
+    public static function validateID($val)
+    {
+        $res = true;
+        if (empty($val)) {
+            Msg::push(Msg::ERROR, "ユーザーIDを入力してください");
+            $res = false;
+        } else {
+            if (strlen($val) > 10) {
+                Msg::push(Msg::ERROR, "ユーザーIDは10桁以下で入力してください");
+                $res = false;
+            } // 半角英数字に当てはまらない
+            if (!preg_match("/^[a-zA-Z0-9]+$/", $val)) {
+                Msg::push(Msg::ERROR, "ユーザーIDは半角英数字で入力してください");
+                $res = false;
+            }
+        }
+        return $res;
+    }
+
+    public static function validatePassWord($val)
+    {
+        $res = true;
+        if (empty($val)) {
+            Msg::push(Msg::ERROR, "パスワードを入力してください");
+            $res = false;
+        } else {
+            if (strlen($val) > 10) {
+                Msg::push(Msg::ERROR, "パスワードは10桁以下で入力してください");
+                $res = false;
+            } // 半角英数字に当てはまらない
+            if (!preg_match("/^[a-zA-Z0-9]+$/", $val)) {
+                Msg::push(Msg::ERROR, "パスワードは半角英数字で入力してください");
+                $res = false;
+            }
+        }
+        return $res;
+    }
+
+    public static function validateNickName($val)
+    {
+        $res = true;
+        if (empty($val)) {
+            Msg::push(Msg::ERROR, "ニックネームを入力してください");
+            $res = false;
+        } else {
+            if (strlen($val) > 10) {
+                Msg::push(Msg::ERROR, "ニックネームは10桁以下で入力してください");
+                $res = false;
+            } // 半角英数字に当てはまらない
+            if (!preg_match("/^[a-zA-Z0-9]+$/", $val)) {
+                Msg::push(Msg::ERROR, "ニックネームは半角英数字で入力してください");
+                $res = false;
+            }
+        }
+        return $res;
+    }
 }
