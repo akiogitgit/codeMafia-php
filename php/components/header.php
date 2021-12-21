@@ -17,7 +17,10 @@
     <?php
 
     use lib\Auth;
+    use lib\Msg;
 
+    Msg::flush();
+    // Msg::clearSession();
     if (Auth::isLogin()) {
         echo "ログイン中<br>";
     } else {

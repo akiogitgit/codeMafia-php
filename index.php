@@ -9,8 +9,6 @@ echo $_SERVER["REQUEST_URI"];
 
 
 // クラスは使わないでやってみる
-require_once(SOURCE_BASE . "models/abstract.model.php");
-require_once(SOURCE_BASE . "models/user.model.php");
 // require_once(SOURCE_BASE . "db/datasource.php");
 // require_once(SOURCE_BASE . "db/user.query.php");
 // use db\UserQuery;
@@ -18,6 +16,10 @@ require_once(SOURCE_BASE . "models/user.model.php");
 // var_dump($result);
 require_once "libs/helper.php";
 require_once "libs/auth.php";
+
+require_once(SOURCE_BASE . "models/abstract.model.php");
+require_once "libs/message.php";
+require_once(SOURCE_BASE . "models/user.model.php");
 
 require_once "dbconnect.php";
 session_start();

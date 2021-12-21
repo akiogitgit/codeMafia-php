@@ -15,3 +15,4 @@ define("SOURCE_BASE", __DIR__ . "/php/");
 
 define("GO_HOME", "home");
 define("GO_REFERER", "referer");
+define("DEBUG", true); // 開発環境の時に trueで、この時だけ表示する
