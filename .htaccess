@@ -1,0 +1,30 @@
+# 書き換えエンジン実行
+RewriteEngine On
+RewriteBase /
+
+# Condの条件に当てはまるのが、Ruleに行き、ここのURL以降が
+#左の正規化のやつに当てはまれば、右に飛ぶ。 左の()の条件が左から順番に $1 $2と右側で使える。
+
+# RewriteCond %{REQUEST_URI} !^/poll
+#　これに書き換え
+# RewriteRule .? /poll/ [R,L]
+
+# このルールでないものを、リダイレクトさせる
+# RewriteCond ${REQUEST_URI} !^/C:/MAMP/htdocs/php/codeMafia/php-mysql/appWeb/
+# RewriteRule .? http://localhost:8888/php/codeMafia/php-mysql/appWeb/ [R,L]
+
+# これは、ここのURLの後にlogin(.*)となるのをリダイレクト (.../appWeb/login...)
+# RewriteRule ^login(.*)$ http://localhost:8888/php/codeMafia/php-mysql/appWeb/ [R=301,L]
+# RewriteRule .+ http://localhost:8888/php/codeMafia/php-mysql/appWeb/ [R,L=301]
+
+
+# ファイルとディレクトリが見つからない時
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule (part.+(end|start)) /poll/$1/index.php
+
+# /appWeb に入ってて、その先に(.+)に当てはまるものがあったら　右に移動
+# RewriteRule (.+) http://localhost:8888/php/codeMafia/php-mysql/appWeb/index.php [L]
+
+# [L]が効いてるかしらんけど、内部リダイレクトになってURLが変化しない　最高
+RewriteRule (.+) /php/codeMafia/php-mysql/appWeb/index.php [L]
