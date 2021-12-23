@@ -13,16 +13,27 @@
 </head>
 
 <body>
-    <h1 class="text-[50px] text-red-600">heeader</h1>
+    <header class="w-full mt-[10px]">
+        <nav class="flex flex-col md:flex-row md:justify-between container md:m-auto md:items-center">
+            <a href="" class="flex ml-[20px] mb-[15px] md:mb-0">
+                <img src="./images/logo.svg" alt="みんなのアンケート　ロゴ" class="h-[50px]">
+                <span class="text-[green] text-[35px] font-bold">みんなのアンケート</span>
+            </a>
+            <div class="flex h-[38px] ml-[20px] gap-[10px]">
+                <a class="py-[6px] px-[20px] rounded-md bg-blue-500 text-white font-bold">登録</a>
+                <a class="mt-[6px]">ログイン</a>
+            </div>
+        </nav>
+    </header>
     <?php
 
     use lib\Auth;
     use lib\Msg;
 
+    // ここで、全ての pushを表示！
     Msg::flush();
-    // Msg::clearSession();
-    if (Auth::isLogin()) {
-        echo "ログイン中<br>";
-    } else {
-        echo "ログインしてない！<br>";
-    }
+    // if (Auth::isLogin()) {
+    //     echo "ログイン中<br>";
+    // } else {
+    //     echo "ログインしてない！<br>";
+    // }

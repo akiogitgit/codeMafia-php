@@ -25,8 +25,8 @@ class UserModel extends AbstractModel
                 Msg::push(Msg::ERROR, "ユーザーIDは10桁以下で入力してください");
                 $res = false;
             } // 半角英数字に当てはまらない
-            if (!preg_match("/^[a-zA-Z0-9]+$/", $val)) {
-                Msg::push(Msg::ERROR, "ユーザーIDは半角英数字で入力してください");
+            if (!is_alnum($val)) {
+                Msg::push(Msg::ERROR, "ニックネームは半角英数字で入力してください");
                 $res = false;
             }
         }
@@ -37,15 +37,15 @@ class UserModel extends AbstractModel
     {
         $res = true;
         if (empty($val)) {
-            Msg::push(Msg::ERROR, "パスワードを入力してください");
+            Msg::push(Msg::ERROR, 'パスワードを入力してください。');
             $res = false;
         } else {
-            if (strlen($val) > 10) {
-                Msg::push(Msg::ERROR, "パスワードは10桁以下で入力してください");
+            if (strlen($val) < 4) {
+                Msg::push(Msg::ERROR, 'パスワードは４桁以上で入力してください。');
                 $res = false;
-            } // 半角英数字に当てはまらない
-            if (!preg_match("/^[a-zA-Z0-9]+$/", $val)) {
-                Msg::push(Msg::ERROR, "パスワードは半角英数字で入力してください");
+            }
+            if (!is_alnum($val)) {
+                Msg::push(Msg::ERROR, 'パスワードは半角英数字で入力してください。');
                 $res = false;
             }
         }
@@ -61,10 +61,6 @@ class UserModel extends AbstractModel
         } else {
             if (strlen($val) > 10) {
                 Msg::push(Msg::ERROR, "ニックネームは10桁以下で入力してください");
-                $res = false;
-            } // 半角英数字に当てはまらない
-            if (!preg_match("/^[a-zA-Z0-9]+$/", $val)) {
-                Msg::push(Msg::ERROR, "ニックネームは半角英数字で入力してください");
                 $res = false;
             }
         }

@@ -4,6 +4,7 @@ namespace controller\login;
 
 use lib\Auth;
 use lib\Msg;
+use model\UserModel;
 
 function get()
 {
@@ -21,14 +22,12 @@ function post()
 
     // $resultLogin = login($id, $pwd);
     if (Auth::login($id, $pwd)) {
+        $user = UserModel::getSession();
         // session のMsgに格納 Msg::flush()で表示
-        Msg::push(Msg::INFO, "認証成功！");
-
-        // helper.php appWeb/の後を渡す GO_HOMEはconfig.php
-        redirect(GO_HOME);
+        Msg::push(Msg::INFO, "{$user->nickname}さん、ようこそ。");
+        redirect(GO_HOME); // helper.php appWeb/の後を渡す GO_HOMEはconfig.php
         die();
     } else {
-        Msg::push(Msg::ERROR, "認証失敗！");
         // １つ前に戻る
         redirect(GO_REFERER);
         die();

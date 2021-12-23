@@ -4,8 +4,8 @@
 ini_set('display_errors', 1);
 
 require_once("config.php");
-echo "index.php<br>";
-echo $_SERVER["REQUEST_URI"];
+// echo "index.php<br>";
+// echo $_SERVER["REQUEST_URI"];
 
 
 // クラスは使わないでやってみる

@@ -22,3 +22,16 @@ function get_url($path)
 {
     return BASE_CONTEXT_PATH . trim($path, "/"); // 両端に / がある時、消す
 }
+
+function is_alnum($val)
+{
+    return preg_match("/^[a-zA-Z0-9]+$/", $val);
+}
+// function is_alnum($val)
+// {
+//     $result = true;
+//     if (!preg_match("/^[a-zA-Z0-9]+$/", $val)) {
+//         $result = false;
+//     }
+//     return $result;
+// }

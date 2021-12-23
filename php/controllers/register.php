@@ -25,9 +25,10 @@ function post()
 
     // $resultLogin = login($id, $pwd);
     if (Auth::register($User)) {
-        echo "<br><br>登録成功";
+        Msg::push(Msg::INFO, "{$User->nickname}さん、ようこそ");
+        redirect(GO_HOME);
     } else {
-        echo "<br><br>登録失敗";
-        Msg::flush();
+        Msg::push(Msg::INFO, "登録失敗");
+        redirect(GO_REFERER);
     }
 }

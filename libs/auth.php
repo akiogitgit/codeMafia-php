@@ -14,6 +14,12 @@ class Auth
     public static function login($id, $pwd)
     {
         try {
+            if (
+                !(UserModel::validateId($id)
+                    * UserModel::validatePassWord($pwd))
+            ) {
+                return false;
+            }
             $is_success = false;
 
             require_once "./dbconnect.php";
@@ -32,10 +38,10 @@ class Auth
                     // $_SESSION["user"] = $user_info;
                     UserModel::setSession($user_info);
                 } else {
-                    echo "<br>パスワードが一致しないよ<br>";
+                    Msg::push(Msg::ERROR, "パスワードが一致しないよ");
                 }
             } else {
-                echo "<br>ユーザーが見つかりません";
+                Msg::push(Msg::ERROR, "ユーザーが見つかりません");
             }
         } catch (Throwable $e) {
             $is_success = false;
@@ -49,7 +55,17 @@ class Auth
     public static function register($User)
     {
         try {
-            if (!UserModel::validateId($User->id)) {
+            // これだと、1つのエラーしか表示されない
+            // if(!UserModel::validateId($User->id) ||
+            // !UserModel::validatePassWord($User->pwd) ||
+            // !UserModel::validateNickname($User->nickname))
+
+            // id, pwd, nick の構文チェック user.model.php
+            if (
+                !(UserModel::validateId($User->id)
+                    * UserModel::validatePassWord($User->pwd)
+                    * UserModel::validateNickname($User->nickname))
+            ) {
                 return false;
             }
             $is_success = false;
@@ -64,7 +80,7 @@ class Auth
             // echo "<br>pwd = " . $user_info["pwd"];
 
             if (!empty($exit_user)) {
-                echo "ユーザーが既に存在します。名前を変えなさい";
+                Msg::push(Msg::ERROR, "ユーザーが既に存在します。");
                 return false;
             }
             $new_user = $db->prepare("insert into users(id,pwd,nickname) values(:id,:pwd,:nickname);");
@@ -102,5 +118,16 @@ class Auth
         } else {
             return false;
         }
+    }
+
+    public static function LogOut()
+    {
+        try {
+            UserModel::clearSession();
+        } catch (Throwable $e) {
+            Msg::push(Msg::DEBUG, $e->getMessage());
+            return false;
+        }
+        return true;
     }
 }
