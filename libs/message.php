@@ -40,8 +40,10 @@ class Msg extends AbstractModel
                     // DEBUGがtrueの時、下が実行
                     continue; //次のループをスキップ
                 }
+
+                $color = $type === static::INFO ? "bg-cyan-100 shadow-md shadow-cyan-300/50" : "bg-red-100 shadow-md shadow-red-300/50";
                 foreach ($msgs as $msg) {
-                    echo "<div>{$type}:{$msg}</div>";
+                    echo "<div class='p-4 my-4 $color'>{$type}:{$msg}</div>";
                 }
             }
         } catch (Throwable $e) {

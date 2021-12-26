@@ -130,4 +130,35 @@ class Auth
         }
         return true;
     }
+
+    // 自分の過去の投稿
+    public static function fetchByUserId($user)
+    {
+        try {
+            $db = dbconnect();
+            $stmt = $db->prepare("select * from topics where user_id = :id and del_flg !=1 order by id desc;");
+            $stmt->bindValue(":id", $user);
+            $success = $stmt->execute();
+
+            // 投稿してない場合は、false
+            if (!$success) {
+                Msg::push(Msg::INFO, "過去の投稿はありません");
+                return false;
+            }
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (Throwable $e) {
+            Msg::push(Msg::DEBUG, $e->getMessage());
+            return false;
+        }
+    }
+
+    // ログインしてないと、見れない設定
+    public static function requireLogin()
+    {
+        if (!static::isLogin()) {
+            Msg::push(Msg::ERROR, "ログインしてください");
+            redirect("login");
+        }
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 // urlが/php/codeMafia/php-mysql/appWeb/login　の時
-// 共通の/php/codeMafia/php-mysql/appWeb/だけを取得する
+// 共通の/php/codeMafia/php-mysql/appWeb/までを取得する
 define("CURRENT_URI", $_SERVER["REQUEST_URI"]);
 if (preg_match("/(.+(appWeb))/i", CURRENT_URI, $match)) {
     define("BASE_CONTEXT_PATH", $match[0] . "/");

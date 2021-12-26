@@ -1,7 +1,3 @@
-<!-- <form action="<?php BASE_CONTEXT_PATH; ?>login" method="post">
-            <input type="submit" value="送信" class="py-1 px-3 border border-black text-bold hover:bg-black hover:text-white duration-300">
-        </form> -->
-<!-- homeは、一番最新の投稿だけ、上で、残りは下 -->
 <main class="text-gray-500">
     <div class="space-y-[15px] mt-[20px]">
         <div class="flex flex-col md:flex-row md:justify-between gap-[30px]">
@@ -24,11 +20,11 @@
                         <div>
                             <textarea class="w-full" name="body" id="body" rows="5"></textarea>
                         </div>
-                        <!-- label for は、idと同じもの  nameを揃えて、idとvalueを変える-->
+                        <!-- label のforに同じnameを入れると、ラベルタップでチェックつく -->
                         <div class="flex items-center">
-                            <input type="radio" name="opinion" id="agree" value="1">
+                            <input type="radio" name="agree" id="agree" value="1">
                             <label class="w-[60px]" for="agree">賛成</label>
-                            <input type="radio" name="opinion" id="disagree" value="0">
+                            <input type="radio" name="disagree" id="disagree" value="0">
                             <label class="w-[60px]" for="disagree">反対</label>
                             <input class="primary-btn w-full" type="submit" value="送信">
                         </div>

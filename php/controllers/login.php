@@ -18,7 +18,7 @@ function post()
     $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_STRING) ?? "";
     $pwd = filter_input(INPUT_POST, "pwd", FILTER_SANITIZE_STRING) ?? "";
 
-    Msg::push(Msg::DEBUG, "メッセージ");
+    // Msg::push(Msg::DEBUG, "メッセージ");
 
     // $resultLogin = login($id, $pwd);
     if (Auth::login($id, $pwd)) {
