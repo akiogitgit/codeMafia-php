@@ -8,12 +8,14 @@ require_once("config.php");
 // echo $_SERVER["REQUEST_URI"];
 
 
-// クラスは使わないでやってみる
+// ここのDBの使い方嫌い
 // require_once(SOURCE_BASE . "db/datasource.php");
 // require_once(SOURCE_BASE . "db/user.query.php");
 // use db\UserQuery;
 // $result = UserQuery::fetchById("test");
 // var_dump($result);
+
+// lib
 require_once "libs/helper.php";
 require_once "libs/auth.php";
 require_once "libs/router.php";
@@ -22,7 +24,17 @@ require_once(SOURCE_BASE . "models/abstract.model.php");
 require_once "libs/message.php";
 require_once(SOURCE_BASE . "models/user.model.php");
 
+// db
 require_once "dbconnect.php";
+
+// views
+require_once SOURCE_BASE . "./components/topic_header_item.php";
+require_once SOURCE_BASE . "./components/topic_list_item.php";
+require_once SOURCE_BASE . "./components/topic_comment_list.php";
+
+require_once SOURCE_BASE . "./views/topic/archive2.php";
+require_once SOURCE_BASE . "./views/topic/detail.php";
+require_once SOURCE_BASE . "./views/home2.php";
 
 use function lib\route;
 
@@ -52,6 +64,7 @@ try {
 
 
     route($rpath, $method);
+
 
 
     // ださいから、上のに変更

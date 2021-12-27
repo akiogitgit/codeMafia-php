@@ -1,8 +1,20 @@
-<!-- <form action="<?php BASE_CONTEXT_PATH; ?>login" method="post">
-            <input type="submit" value="送信" class="py-1 px-3 border border-black text-bold hover:bg-black hover:text-white duration-300">
-        </form> -->
-<!-- homeは、一番最新の投稿だけ、上で、残りは下 -->
-<main class="text-gray-500">
+<?php
+//  homeは、一番最新の投稿だけ、上で、残りは下
+
+// namespace views\home;
+
+// use lib\Auth;
+
+// function index($topics2)
+// {
+//     $topics = Auth::fetchByAllPost();
+//     // 神関数。$topicに、最初の配列　$topicsに残りの配列格納。
+//     $topic = array_shift($topics);
+//     \components\topic_header_item($topic);
+//     \components\topic_header_item($topics);
+// }
+?>
+<div class="text-gray-500">
     <div class="space-y-[15px] mt-[20px]">
         <div class="flex flex-col md:flex-row md:justify-between gap-[30px]">
             <!-- <div class="h-[400px] w-[400px] mr-[40px] bg-red-500 rounded-full"></div> -->
@@ -63,4 +75,4 @@
             <?php endfor; ?>
         </ul>
     </div>
-</main>
+</div>

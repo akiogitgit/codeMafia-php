@@ -131,7 +131,41 @@ class Auth
         return true;
     }
 
-    // 自分の過去の投稿
+
+    // ログインしてないと、見れない設定
+    public static function requireLogin()
+    {
+        if (!static::isLogin()) {
+            Msg::push(Msg::ERROR, "ログインしてください");
+            redirect("login");
+        }
+    }
+
+    // 全ての投稿　非公開は取らない
+    public static function fetchByAllPost()
+    {
+        try {
+            $db = dbconnect();
+            // $stmt = $db->prepare("select * from topics where del_flg !=1 and published !=0  order by id desc;");
+            $stmt = $db->prepare("select t.*,u.nickname from topics t
+                                INNER JOIN users u ON t.user_id = u.id
+                                where t.del_flg !=1 and u.del_flg !=1 and t.published !=0  order by t.id desc;");
+            $success = $stmt->execute();
+
+            // 投稿してない場合は、false
+            if (!$success) {
+                Msg::push(Msg::INFO, "過去の投稿はありません");
+                return false;
+            }
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (Throwable $e) {
+            Msg::push(Msg::DEBUG, $e->getMessage());
+            return false;
+        }
+    }
+
+    // 自分の過去の投稿 非公開も取ってくる
     public static function fetchByUserId($user)
     {
         try {
@@ -153,12 +187,25 @@ class Auth
         }
     }
 
-    // ログインしてないと、見れない設定
-    public static function requireLogin()
+    // 投稿IDの、コメント取得
+    public static function fetchByAllComments($id)
     {
-        if (!static::isLogin()) {
-            Msg::push(Msg::ERROR, "ログインしてください");
-            redirect("login");
+        try {
+            $db = dbconnect();
+            $stmt = $db->prepare("select * from topics where id_id = :id and del_flg !=1 order by id desc;");
+            $stmt->bindValue(":id", $id);
+            $success = $stmt->execute();
+
+            // 投稿してない場合は、false
+            if (!$success) {
+                Msg::push(Msg::INFO, "過去の投稿はありません");
+                return false;
+            }
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (Throwable $e) {
+            Msg::push(Msg::DEBUG, $e->getMessage());
+            return false;
         }
     }
 }

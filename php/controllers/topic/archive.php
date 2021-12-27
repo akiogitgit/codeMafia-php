@@ -16,7 +16,10 @@ function get()
         // echo "<pre>";
         // print_r($res);
         // echo "</pre>";
-        require_once SOURCE_BASE . "views/topic/archive.php";
+        // require_once SOURCE_BASE . "views/topic/archive.php";
+
+        // これで過去の投稿を表示
+        \view\topic\archive2\index($res);
     } else {
         echo '
         <main>
@@ -28,11 +31,4 @@ function get()
         ';
     }
     // require_once SOURCE_BASE . "views/archive.php";
-}
-
-function index($topics)
-{
-    foreach ($topics as $topic) {
-        $url = get_url("topic/edit?topic_id=" . $topic->id);
-    }
 }

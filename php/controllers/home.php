@@ -2,7 +2,13 @@
 
 namespace controller\home;
 
+use lib\Auth;
+
 function get()
 {
-    require_once SOURCE_BASE . "views/home.php";
+    $res = Auth::fetchByAllPost();
+    if ($res) {
+        // namespace を読み込むときは、index.php で requireする
+        \view\home2\index($res);
+    }
 }

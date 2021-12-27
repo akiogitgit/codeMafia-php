@@ -55,9 +55,10 @@ use lib\Msg;
                 </div>
             </nav>
         </header>
-        <?php
-        // ここで、全ての pushを表示！
-        Msg::flush();
+        <main>
+            <?php
+            // ここで、全ての pushを表示！
+            Msg::flush();
     // if (Auth::isLogin()) {
     //     echo "ログイン中<br>";
     // } else {

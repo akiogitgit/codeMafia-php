@@ -2,7 +2,7 @@
 
 namespace components;
 
-function topic_list_item($topic)
+function topic_comment_list($topic)
 {
 ?>
     <?php foreach ($topic as $r) : ?>
