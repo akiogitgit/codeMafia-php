@@ -58,7 +58,7 @@ try {
     $rpath = str_replace(BASE_CONTEXT_PATH, "", CURRENT_URI);
     // $_SERVERは、全てのURL、BASE_は/appacheの先がないURL　つまり、残りの部分を rpathに格納
 
-    // method を小文字で取得
+    // getか、post を小文字で取得
     $method = strtolower($_SERVER["REQUEST_METHOD"]);
     // echo "method: " . $method;
 

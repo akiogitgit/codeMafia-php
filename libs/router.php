@@ -20,7 +20,8 @@ function route($rpath, $method)
 
         // topic/archive を、topic\archiveに
         $rpath = str_replace('/', '\\', $rpath);
-        // 表示している namespace の関数を実行
+
+        // 表示している namespace のgetかpost関数を実行
         $fn = "\\controller\\{$rpath}\\{$method}";
         $fn();
     } catch (Throwable $e) {

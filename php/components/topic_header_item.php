@@ -4,14 +4,18 @@ namespace components;
 
 use lib\Auth;
 
-function topic_header_item($topic)
+function topic_header_item($topic, $url)
 {
 ?>
     <div class="mt-[20px] flex flex-col md:flex-row md:justify-between gap-[30px]">
         <!-- <div class="h-[400px] w-[400px] mr-[40px] bg-red-500 rounded-full"></div> -->
         <canvas width="400" height="400" data-likes="3" data-dislikes="2" style="background-color: gray;"></canvas>
         <div>
-            <h1 class="text-[40px] text-gray-500"><?php echo $topic["title"] ?></h1>
+            <form action="topic/detail" method="post">
+                <input type="hidden" name="id" value="<?php echo $topic['id']; ?>">
+                <input type="submit" value="<?php echo $topic['title']; ?>">
+            </form>
+            <a href="<?php echo $url; ?>" class="text-[40px] text-gray-500 block hover:underline hover:cursor-pointer"><?php echo $topic["title"] ?></a>
             <!-- innerjoin して表示する -->
             <span class="">Posted by <?php echo $topic["nickname"]; ?> • 26 views</span>
             <div class="text-[90px] flex gap-[50px] justify-around">

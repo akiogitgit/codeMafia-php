@@ -12,3 +12,12 @@ function get()
         \view\home2\index($res);
     }
 }
+
+function post()
+{
+    $res = Auth::fetchByAllPost();
+    if ($res) {
+        // namespace を読み込むときは、index.php で requireする
+        \view\home2\index($res);
+    }
+}

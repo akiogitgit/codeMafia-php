@@ -187,18 +187,41 @@ class Auth
         }
     }
 
-    // 投稿IDの、コメント取得
+    // トピックIDから、情報取得 nicknameも
+    public static function fetchByTopic($id)
+    {
+        try {
+            $db = dbconnect();
+            $stmt = $db->prepare("select t.*,u.nickname from topics t, users u
+            where t.user_id=u.id and t.del_flg !=1 and t.published !=0 and t.id=:id;");
+            $stmt->bindValue(":id", $id);
+            $success = $stmt->execute();
+
+            // 投稿がない
+            if (!$success) {
+                return false;
+            }
+            $result = $stmt->fetch();
+            return $result;
+        } catch (Throwable $e) {
+            Msg::push(Msg::DEBUG, $e->getMessage());
+            return false;
+        }
+    }
+
+    // 投稿IDの、コメント取得　nicknameも
     public static function fetchByAllComments($id)
     {
         try {
             $db = dbconnect();
-            $stmt = $db->prepare("select * from topics where id_id = :id and del_flg !=1 order by id desc;");
+            $stmt = $db->prepare("select c.*,u.nickname from comments c,users u
+            where c.user_id = u.id and c.del_flg !=1 and u.del_flg !=1 and c.topic_id = :id order by id desc;");
             $stmt->bindValue(":id", $id);
             $success = $stmt->execute();
 
             // 投稿してない場合は、false
             if (!$success) {
-                Msg::push(Msg::INFO, "過去の投稿はありません");
+                Msg::push(Msg::INFO, "コメントはありません");
                 return false;
             }
             $result = $stmt->fetchAll();
