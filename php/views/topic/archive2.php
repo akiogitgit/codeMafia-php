@@ -9,10 +9,12 @@ function index($topics)
         <h1 class="text-[30px] text-gray-500">過去の投稿</h1>
         <div class="space-y-[20px]">
             <?php
+            // 配列を全表示
             foreach ($topics as $topic) {
-                $url = get_url("topic/edit?topic_id=" . $topic["id"]);
-                // 配列を全表示
-                \components\topic_list_item($topic, $url);
+                // $url = get_url("topic/edit?topic_id=" . $topic["id"]);
+
+                //                       archiveから来たからfalse
+                \components\topic_list_item($topic, false);
             }
             ?>
 

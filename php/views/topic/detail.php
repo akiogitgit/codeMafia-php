@@ -2,14 +2,9 @@
 
 namespace view\detail;
 
-use lib\Auth;
-use lib\Msg;
-
-function index($topic, $url, $comments)
+function index($topic, $comments)
 {
-
-
-    \components\topic_header_item($topic, $url);
+    \components\topic_header_item($topic, false);
     \components\topic_comment_list($comments);
     // 押したやつを、受け取って、
     // トピックのidを受け取って、SQL実行で

@@ -20,7 +20,8 @@ function topic_comment_list($topic)
                         <span class="text-gray-500"><?php echo $r["body"]; ?></span>
                     </h2>
                 </div>
-                <div class="text-gray-400">Commented by <?php echo $r["nickname"]; ?>
+                <div class="text-gray-400">
+                    Commented by <?php echo $r["nickname"]; ?>
                 </div>
             </div>
         </div>

@@ -10,6 +10,8 @@ use Error;
 abstract class AbstractModel
 {
     protected static $SETTION_NAME = null;
+
+    // UserModel で定義したクラスを受け取る
     public static function setSession($val)
     {
         if (empty(static::$SESSION_NAME)) {

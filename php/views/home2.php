@@ -15,6 +15,6 @@ function index($topics)
     foreach ($topics as $topic) {
         $url = get_url("topic/detail?topic_id=" . $topic["id"]);
         // 配列を全表示
-        \components\topic_list_item($topic, $url);
+        \components\topic_list_item($topic, true);
     }
 }

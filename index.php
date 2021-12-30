@@ -34,6 +34,8 @@ require_once SOURCE_BASE . "./components/topic_comment_list.php";
 
 require_once SOURCE_BASE . "./views/topic/archive2.php";
 require_once SOURCE_BASE . "./views/topic/detail.php";
+require_once SOURCE_BASE . "./views/topic/create.php";
+require_once SOURCE_BASE . "./views/topic/edit.php";
 require_once SOURCE_BASE . "./views/home2.php";
 
 use function lib\route;

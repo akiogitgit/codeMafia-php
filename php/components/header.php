@@ -22,10 +22,10 @@ use lib\Msg;
 
     <style type="text/tailwindcss">
         .primary-btn {
-            @apply py-[6px] px-[20px] rounded-md bg-blue-500 text-white inline;
+            @apply py-[6px] px-[20px] rounded-md bg-blue-500 text-white inline cursor-pointer;
         }
         .danger-btn {
-            @apply py-[6px] px-[20px] rounded-md bg-red-500 text-white inline;
+            @apply py-[6px] px-[20px] rounded-md bg-red-500 text-white inline cursor-pointer;
         }
         .font-m1{
             font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -34,7 +34,7 @@ use lib\Msg;
 </head>
 
 <body class="bg-gray-100 font-m1">
-    <div class="min-h-[100vh] overflow-hidden mx-auto w-[90%] md:w-[80%] max-w-[1200px]">
+    <div class="min-h-[100vh] overflow- mx-auto w-[90%] md:w-[80%] max-w-[1200px]">
         <!-- <header class="w-full pt-[10px] container md:m-auto w-[90%]"> -->
         <header class="w-full pt-[10px]">
             <nav class="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -45,7 +45,7 @@ use lib\Msg;
                 </a>
                 <div class="flex h-[38px] gap-[10px]">
                     <?php if (Auth::isLogin()) : ?>
-                        <a href="<?php the_url("topic/create"); ?>" class="py-[6px] px-[20px] rounded-md bg-blue-500 text-white cursor-pointer">投稿</a>
+                        <a href="<?php the_url("topic/create"); ?>" class="primary-btn">投稿</a>
                         <a href="<?php the_url("topic/archive"); ?>" class="mt-[6px] cursor-pointer">過去の投稿</a>
                         <a href="<?php the_url("logout"); ?>" class="mt-[6px] cursor-pointer">ログアウト</a>
                     <?php else : ?>

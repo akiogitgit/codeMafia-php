@@ -5,12 +5,11 @@ namespace controller\topic\detail;
 use lib\Auth;
 use lib\Msg;
 
+// 飾り
 function get()
 {
     // 押したやつを、受け取って、
-    // トピックのidを受け取って、SQL実行で
-
-    // $topic = array_shift($topics);
+    // トピックのidを受け取って、SQL実行
     $topic = Auth::fetchByTopic(3);
     if (!$topic) {
         Msg::push(Msg::ERROR, "トピックが見つかりません");
@@ -21,14 +20,6 @@ function get()
         $comments = Auth::fetchByAllComments($topic["id"]);
         \view\detail\index($topic, $url, $comments);
     }
-
-    // コメントと追加したテーブルを取得
-    // $topic = Auth::fetchByAllPost();
-    // if ($topic) {
-    //     // namespace を読み込むときは、index.php で requireする
-    //     \view\detail\index($topic);
-    // }
-    // require_once SOURCE_BASE . "views/detail.php";
 }
 
 function post()
@@ -40,8 +31,9 @@ function post()
         redirect("404");
     }
     if (count($topic) > 0) {
-        $url = get_url("topic/detail?topic_id=" . $topic["id"]);
+        // viewsを増やす
+        Auth::incrementViewCount($topic["id"]);
         $comments = Auth::fetchByAllComments($topic["id"]);
-        \view\detail\index($topic, $url, $comments);
+        \view\detail\index($topic, $comments);
     }
 }

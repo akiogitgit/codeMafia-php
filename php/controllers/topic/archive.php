@@ -10,8 +10,9 @@ Auth::requireLogin();
 
 function get()
 {
+    // UserModel で SESSION 情報をクラスとして取得
     $user = UserModel::getSession();
-    $res = Auth::fetchByUserId($user["id"]);
+    $res = Auth::fetchByUserId($user->id);
     if ($res) {
         // echo "<pre>";
         // print_r($res);
