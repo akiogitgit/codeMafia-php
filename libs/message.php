@@ -1,6 +1,10 @@
 <?php
 
+
 namespace lib;
+
+// エラー表示あり
+ini_set('display_errors', 1);
 
 use model\AbstractModel;
 use Throwable;

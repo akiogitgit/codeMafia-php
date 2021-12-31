@@ -38,7 +38,7 @@ function index($topic)
                     </div>
                     <div class="flex items-center space-x-[20px]">
                         <div>
-                            <input type="submit" name="login" value="送信" class="py-[6px] px-[20px] rounded-md bg-blue-500 text-white">
+                            <input type="submit" name="login" value="完了" class="primary-btn">
                         </div>
                         <div>
                             <a href="<?php echo the_url("topic/archive"); ?>">戻る</a>
@@ -48,5 +48,10 @@ function index($topic)
             </div>
         </div>
 
-    <?php
+        <form action="<?php the_url('topic/delete'); ?>" method="post">
+            <input type="hidden" name="id" value="<?php echo $topic['id']; ?>">
+            <button type="submit" class="danger-btn float-right mr-[25px] translate-y-[-75px]">削除</button>
+        </form>
+    </div>
+<?php
 }

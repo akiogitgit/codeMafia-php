@@ -15,14 +15,20 @@ require_once("config.php");
 // $result = UserQuery::fetchById("test");
 // var_dump($result);
 
+
+
+// model
+require_once(SOURCE_BASE . "models/abstract.model.php");
+require_once(SOURCE_BASE . "models/user.model.php");
+require_once(SOURCE_BASE . "models/topic.model.php");
+
 // lib
 require_once "libs/helper.php";
 require_once "libs/auth.php";
+require_once "libs/sql_operation.php";
 require_once "libs/router.php";
-
-require_once(SOURCE_BASE . "models/abstract.model.php");
 require_once "libs/message.php";
-require_once(SOURCE_BASE . "models/user.model.php");
+
 
 // db
 require_once "dbconnect.php";

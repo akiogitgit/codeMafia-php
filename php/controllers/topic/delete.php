@@ -1,17 +1,15 @@
 <?php
 
-namespace controller\topic\edit;
+namespace controller\topic\delete;
 
 use lib\Auth;
 use lib\Msg;
 
-// 飾り
 function get()
 {
     redirect("/");
     die();
 }
-
 function post()
 {
     $topic_id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
@@ -20,8 +18,9 @@ function post()
     if (!$topic) {
         Msg::push(Msg::ERROR, "トピックが見つかりません");
         redirect("404");
-    }
-    if (count($topic) > 0) {
-        \view\edit\index($topic);
+    } else {
+        Msg::push(Msg::INFO, "トピックを削除するふりをしました");
+        redirect("topic/archive");
+        die();
     }
 }

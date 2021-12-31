@@ -3,6 +3,7 @@
 // 使う所で use lib\Auth;  Auth::login()
 namespace lib;
 
+use model\TopicModel;
 use model\UserModel;
 use Throwable;
 
@@ -243,6 +244,11 @@ class Auth
     public static function update($id, $title, $published)
     {
         try {
+            if (!(TopicModel::validateTitle($title))) {
+                return false;
+            }
+            $success = false;
+
             $db = dbconnect();
             $stmt = $db->prepare("UPDATE topics SET title = :title, published = :published WHERE id = :id");
             $stmt->bindValue(":id", $id);
@@ -266,6 +272,14 @@ class Auth
     public static function push_comment($topic_id, $agree, $body, $user_id, $updated_by)
     {
         try {
+            if (!TopicModel::validateComment($body)) {
+                return false;
+            }
+            if (is_null($agree)) {
+                Msg::push(Msg::ERROR, "賛成か反対を選択ししてください");
+                return false;
+            }
+
             $db = dbconnect();
             $stmt = $db->prepare("INSERT INTO comments(topic_id, agree, body, user_id, updated_by) VALUES (:topic_id,:agree,:body,:user_id,:updated_by)");
             $stmt->bindValue(":topic_id", $topic_id);
@@ -315,6 +329,10 @@ class Auth
     public static function create_topic($title, $published)
     {
         try {
+            if (!(TopicModel::validateTitle($title))) {
+                return false;
+            }
+            $success = false;
 
             $User = UserModel::getSession();
             $user_id = $User->id;
