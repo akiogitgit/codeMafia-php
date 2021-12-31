@@ -117,6 +117,7 @@ class sql_operation
                 return false;
             }
 
+            // comments にコメント追加
             $db = dbconnect();
             $stmt = $db->prepare("INSERT INTO comments(topic_id, agree, body, user_id, updated_by) VALUES (:topic_id,:agree,:body,:user_id,:updated_by)");
             $stmt->bindValue(":topic_id", $topic_id);
@@ -126,8 +127,17 @@ class sql_operation
             $stmt->bindValue(":updated_by", $updated_by);
             $success = $stmt->execute();
 
+            // topics にlikes, dislikes 変更
+            if ($agree) { // 賛成
+                $stmt2 = $db->prepare("UPDATE topics SET likes = likes+1 WHERE id = :topic_id;");
+            } else { // 反対
+                $stmt2 = $db->prepare("UPDATE topics SET dislikes = dislikes+1 WHERE id = :topic_id;");
+            }
+            $stmt2->bindValue(":topic_id", $topic_id);
+            $success2 = $stmt2->execute();
+
             // 投稿してない場合は、false
-            if (!$success) {
+            if (!$success || !$success2) {
                 Msg::push(Msg::ERROR, "コメントの追加に失敗しました。");
                 return false;
             }

@@ -11,6 +11,7 @@ Auth::requireLogin();
 
 function get()
 {
+    // 一個前の状態を取得して、session から消す
     $topic = TopicModel::getSessionFlush();
 
     if (!$topic) { // 初回

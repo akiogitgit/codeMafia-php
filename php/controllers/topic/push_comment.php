@@ -2,6 +2,7 @@
 
 namespace controller\topic\push_comment;
 
+
 use lib\Auth;
 use lib\Msg;
 use lib\sql_operation;
@@ -27,10 +28,10 @@ function post()
     $success = sql_operation::push_comment($topic_id, $opinion, $body, $user_id, $nickname);
     if (!$success) {
         Msg::push(Msg::ERROR, "コメントの追加に失敗しました。");
-        redirect(GO_REFERER);
     } else {
         Msg::push(Msg::INFO, "コメントの追加に成功しました。");
-        redirect("/");
     }
+    // redirect(GO_REFERER);
+    redirect("/");
     die();
 }
