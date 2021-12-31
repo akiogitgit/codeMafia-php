@@ -47,7 +47,7 @@ class Msg extends AbstractModel
 
                 $color = $type === static::INFO ? "bg-cyan-100 shadow-md shadow-cyan-300/50" : "bg-red-100 shadow-md shadow-red-300/50";
                 foreach ($msgs as $msg) {
-                    echo "<div class='p-4 my-4 $color'>{$type}:{$msg}</div>";
+                    echo "<div class='p-4 my-4 $color'>{$msg}</div>";
                 }
             }
         } catch (Throwable $e) {

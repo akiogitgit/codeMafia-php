@@ -4,6 +4,7 @@ namespace controller\topic\archive;
 
 use model\UserModel;
 use lib\Auth;
+use lib\sql_operation;
 
 // ログインしてないと、エラーメッセージ
 Auth::requireLogin();
@@ -12,7 +13,7 @@ function get()
 {
     // UserModel で SESSION 情報をクラスとして取得
     $user = UserModel::getSession();
-    $res = Auth::fetchByUserId($user->id);
+    $res = sql_operation::fetchByUserId($user->id);
     if ($res) {
         // echo "<pre>";
         // print_r($res);

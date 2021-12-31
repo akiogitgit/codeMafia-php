@@ -38,7 +38,7 @@ function index($topic)
                     </div>
                     <div class="flex items-center space-x-[20px]">
                         <div>
-                            <input type="submit" name="login" value="完了" class="primary-btn">
+                            <input type="submit" name="login" value="完了" class="primary-btn cursor-pointer">
                         </div>
                         <div>
                             <a href="<?php echo the_url("topic/archive"); ?>">戻る</a>

@@ -22,10 +22,10 @@ use lib\Msg;
 
     <style type="text/tailwindcss">
         .primary-btn {
-            @apply py-[6px] px-[20px] rounded-md bg-blue-500 text-white inline cursor-pointer;
+            @apply py-[6px] px-[20px] rounded-md bg-blue-500 text-white inline;
         }
         .danger-btn {
-            @apply py-[6px] px-[20px] rounded-md bg-red-500 text-white inline cursor-pointer;
+            @apply py-[6px] px-[20px] rounded-md bg-red-500 text-white inline;
         }
         .font-m1{
             font-family: 'M PLUS Rounded 1c', sans-serif;

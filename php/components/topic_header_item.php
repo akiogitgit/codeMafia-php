@@ -43,9 +43,9 @@ function topic_header_item($topic, $home)
                         <div class="flex items-center">
                             <input type="radio" name="opinion" id="agree" value="1">
                             <label class="w-[60px]" for="agree">賛成</label>
-
                             <input type="radio" name="opinion" id="disagree" value="0">
                             <label class="w-[60px]" for="disagree">反対</label>
+
                             <input type="hidden" name="id" value="<?php echo $topic['id']; ?>">
                             <button class="primary-btn w-full" type="submit">
                                 送信
