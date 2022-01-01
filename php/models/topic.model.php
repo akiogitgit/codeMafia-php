@@ -41,7 +41,7 @@ class TopicModel extends AbstractModel
             $res = false;
         } else {
             if (strlen($val) > 30) {
-                Msg::push(Msg::ERROR, "コメントは1000桁以下で入力してください");
+                Msg::push(Msg::ERROR, "コメントは30文字以下で入力してください");
                 $res = false;
             }
         }

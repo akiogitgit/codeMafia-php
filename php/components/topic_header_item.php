@@ -6,6 +6,12 @@ use lib\Auth;
 
 function topic_header_item($topic, $home)
 {
+    if (!isset($_SESSION["comment"]["body"])) {
+        $_SESSION["comment"]["body"] = "";
+    }
+    if (!isset($_SESSION["comment"]["opinion"])) {
+        $_SESSION["comment"]["opinion"] = null;
+    }
 ?>
     <div class="mt-[20px] flex flex-col md:flex-row md:justify-between gap-[30px]">
         <!-- <div class="h-[400px] w-[400px] mr-[40px] bg-red-500 rounded-full"></div> -->
@@ -37,16 +43,24 @@ function topic_header_item($topic, $home)
                     <form action="<?php echo the_url("topic/push_comment"); ?>" method="post">
                         <span class="text-[25px]">あなたは賛成？それとも反対？</span>
                         <div>
-                            <textarea class="w-full" name="body" id="body" rows="5"></textarea>
+                            <textarea class="w-full" name="body" id="body" rows="5"><?php echo $_SESSION["comment"]["body"]; ?></textarea>
                         </div>
                         <!-- label for は、idと同じもの  nameを揃えて、idとvalueを変える-->
                         <div class="flex items-center">
-                            <input type="radio" name="opinion" id="agree" value="1">
+
+                            <!-- 成功した後、checked 消えない -->
+                            <input type="radio" name="opinion" id="agree" value="1" <?php echo $_SESSION["comment"]["opinion"] == 1 ? "checked" : ""; ?>>
                             <label class="w-[60px]" for="agree">賛成</label>
-                            <input type="radio" name="opinion" id="disagree" value="0">
+                            <input type="radio" name="opinion" id="disagree" value="0" <?php echo $_SESSION["comment"]["opinion"] == 0 ? "checked" : ""; ?>>
                             <label class="w-[60px]" for="disagree">反対</label>
 
+                            <!-- <input type="radio" name="opinion" id="agree" value="1" <?php echo "checked"; ?>>
+                            <label class="w-[60px]" for="agree">賛成</label>
+                            <input type="radio" name="opinion" id="disagree" value="0">
+                            <label class="w-[60px]" for="disagree">反対</label> -->
+
                             <input type="hidden" name="id" value="<?php echo $topic['id']; ?>">
+                            <input type="hidden" name="url" value="<?php echo CURRENT_URI; ?>">
                             <button class="primary-btn w-full" type="submit">
                                 送信
                             </button>

@@ -11,15 +11,17 @@ function get()
 {
     // 押したやつを、受け取って、
     // トピックのidを受け取って、SQL実行
-    $topic = sql_operation::fetchByTopic(3);
+    $topic_id = $_SESSION["comment"]["topic_id"];
+    $topic = sql_operation::fetchByTopic($topic_id);
     if (!$topic) {
         Msg::push(Msg::ERROR, "トピックが見つかりません");
         redirect("404");
     }
     if (count($topic) > 0) {
-        $url = get_url("topic/detail?topic_id=" . $topic["id"]);
+        // viewsを増やす
+        sql_operation::incrementViewCount($topic["id"]);
         $comments = sql_operation::fetchByAllComments($topic["id"]);
-        \view\detail\index($topic, $url, $comments);
+        \view\detail\index($topic, $comments);
     }
 }
 
