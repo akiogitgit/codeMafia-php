@@ -5,6 +5,8 @@ namespace components;
 // 一個だけ表示する　aタグのとこはdetail editに飛ぶから、引数
 function topic_list_item($topic, $home)
 {
+    $topic = escape($topic);
+    $home = escape($home);
 ?>
     <div class="mt-[15px] flex flex-col justify-center">
         <div class="w-full mx-auto p-[25px] gap-[50px] flex items-center flex-col md:flex-row md:justify-between

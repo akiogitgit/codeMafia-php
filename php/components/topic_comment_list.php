@@ -4,6 +4,7 @@ namespace components;
 
 function topic_comment_list($topic)
 {
+    $topic = escape($topic);
 ?>
     <?php foreach ($topic as $r) : ?>
         <div class="mt-[15px] flex flex-col">

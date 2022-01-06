@@ -55,7 +55,7 @@ use lib\Msg;
                 </div>
             </nav>
         </header>
-        <main>
+        <main class="overflow-hidden">
             <?php
             // ここで、全ての pushを表示！
             Msg::flush();
