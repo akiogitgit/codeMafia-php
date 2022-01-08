@@ -19,7 +19,7 @@ function index($topic)
                             タイトル
                         </label>
                         <input type="hidden" name="id" value="<?php echo $topic['id']; ?>">
-                        <input type="text" name="title" id="" value="<?php echo $topic['title']; ?>" autofocus class="py-2 pl-4 border border-gray-300 rounded shadow w-full appearance-none focus:outline-none focus:shadow-blue-500/50 focus:border-blue-500">
+                        <input type="text" name="title" id="" value="<?php echo $topic['title']; ?>" autofocus required minlength="5" maxlength="30" class="py-2 pl-4 border border-gray-300 rounded shadow w-full appearance-none focus:outline-none focus:shadow-blue-500/50 focus:border-blue-500">
                     </div>
                     <div>
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="ステータス">

@@ -1,2 +1,2 @@
 console.log("js is reading!!");
-// alert("alert?");
+window.alert("alert?");
