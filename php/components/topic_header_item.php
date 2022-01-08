@@ -20,7 +20,10 @@ function topic_header_item($topic, $home)
 ?>
     <div class="mt-[20px] flex flex-col md:flex-row md:justify-between gap-[30px]">
         <!-- <div class="h-[400px] w-[400px] mr-[40px] bg-red-500 rounded-full"></div> -->
-        <canvas width="400" height="400" data-likes="3" data-dislikes="2" style="background-color: gray;"></canvas>
+        <div class="w-0 md:w-[900px]">
+            <canvas id="chart" width="400" height="400" data-likes="<?php echo $topic["likes"]; ?>" data-dislikes="<?php echo $topic["dislikes"]; ?>" class=""></canvas>
+            <!-- <canvas id="chart" width="400" height="400" data-likes="0" data-dislikes="1"></canvas> -->
+        </div>
         <div>
             <!-- ホームから来たかどうか -->
             <?php if ($home) : ?>
@@ -81,6 +84,8 @@ function topic_header_item($topic, $home)
             </div>
         </div>
     </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="./js/pie-chart.js"></script> -->
 
 <?php
     unset($_SESSION["comment"]);
