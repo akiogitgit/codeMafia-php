@@ -20,7 +20,7 @@ function topic_header_item($topic, $home)
 ?>
     <div class="mt-[20px] flex flex-col md:flex-row md:justify-between gap-[30px]">
         <!-- <div class="h-[400px] w-[400px] mr-[40px] bg-red-500 rounded-full"></div> -->
-        <div class="w-0 md:w-[900px]">
+        <div class="md:w-[900px]">
             <canvas id="chart" width="400" height="400" data-likes="<?php echo $topic["likes"]; ?>" data-dislikes="<?php echo $topic["dislikes"]; ?>" class=""></canvas>
             <!-- <canvas id="chart" width="400" height="400" data-likes="0" data-dislikes="1"></canvas> -->
         </div>
@@ -51,15 +51,15 @@ function topic_header_item($topic, $home)
                     <form action="<?php echo the_url("topic/push_comment"); ?>" method="post">
                         <span class="text-[25px]">あなたは賛成？それとも反対？</span>
                         <div>
-                            <textarea class="w-full" name="body" id="body" rows="5"><?php echo $_SESSION["comment"]["body"]; ?></textarea>
+                            <textarea class="w-full" name="body" id="body" rows="5" required maxlength="100"><?php echo $_SESSION["comment"]["body"]; ?></textarea>
                         </div>
                         <!-- label for は、idと同じもの  nameを揃えて、idとvalueを変える-->
                         <div class="flex items-center">
 
                             <!-- 成功した後、checked 消えない -->
-                            <input type="radio" name="opinion" id="agree" value="1" <?php echo $_SESSION["comment"]["opinion"] == 1 ? "checked" : ""; ?>>
+                            <input type="radio" name="opinion" id="agree" value="1" required <?php echo $_SESSION["comment"]["opinion"] == 1 ? "checked" : ""; ?>>
                             <label class="w-[60px]" for="agree">賛成</label>
-                            <input type="radio" name="opinion" id="disagree" value="0" <?php echo $_SESSION["comment"]["opinion"] == 0 ? "checked" : ""; ?>>
+                            <input type="radio" name="opinion" id="disagree" value="0" required <?php echo $_SESSION["comment"]["opinion"] == 0 ? "checked" : ""; ?>>
                             <label class="w-[60px]" for="disagree">反対</label>
 
                             <!-- <input type="radio" name="opinion" id="agree" value="1" <?php echo "checked"; ?>>

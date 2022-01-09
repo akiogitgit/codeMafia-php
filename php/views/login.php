@@ -76,4 +76,5 @@
             </form>
         </div>
     </div>
+    <script src="<?php echo BASE_CONTEXT_PATH ?>js/form-validate.js"></script>
 </main>

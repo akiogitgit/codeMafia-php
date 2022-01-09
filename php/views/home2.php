@@ -8,8 +8,8 @@ function index($topics)
 {
     // 神関数。$topicに、最初の配列　$topicsに残りの配列格納。
     $topic = array_shift($topics);
-    $url_h = get_url("topic/detail?topic_id=" . $topic["id"]);
-    \components\topic_header_item($topic, $url_h);
+    // $url_h = get_url("topic/detail?topic_id=" . $topic["id"]);
+    \components\topic_header_item($topic, true);
     // \components\topic_list_item($topics);
 
     foreach ($topics as $topic) {

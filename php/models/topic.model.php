@@ -24,12 +24,16 @@ class TopicModel extends AbstractModel
         if (empty($val)) {
             Msg::push(Msg::ERROR, "タイトルを入力してください");
             $res = false;
-        } else {
-            if (strlen($val) > 30) {
-                Msg::push(Msg::ERROR, "タイトルは30桁以下で入力してください");
-                $res = false;
-            }
+        } else if (strlen($val) < 4) {
+            Msg::push(Msg::ERROR, "タイトルは4文字以上で入力してください");
+            $res = false;
         }
+        if (strlen($val) > 30) {
+            Msg::push(Msg::ERROR, "タイトルは30文字以下で入力してください");
+            $res = false;
+        }
+
+
         return $res;
     }
 

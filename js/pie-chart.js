@@ -1,10 +1,11 @@
 function poll_chart() {
     // const $chart = document.querySelector("#chart");
     const $chart = document.querySelector("canvas");
+
+
     const ctx = $chart.getContext("2d"); // canvas の情報を取得
     const likes = $chart.dataset.likes;
     const dislikes = $chart.dataset.dislikes;
-
     // chart 取れない時
     if (!$chart) {
         data = {
@@ -58,6 +59,5 @@ function poll_chart() {
             }
         }
     });
-
 }
 poll_chart();
